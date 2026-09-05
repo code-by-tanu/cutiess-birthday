@@ -1,6 +1,7 @@
 /* ==========================================================================
    SHARED SEAMLESS BACKGROUND MUSIC CONTROLLER
    Maintains continuous playback between index.html and galaxy.html
+   Auto-starts on site load
    ========================================================================== */
 
 class ContinuousMusicController {
@@ -17,7 +18,9 @@ class ContinuousMusicController {
     }
     
     this.savedTime = parseFloat(localStorage.getItem('bgm_time') || '0');
-    this.wasPlaying = localStorage.getItem('bgm_playing') === 'true';
+    const storedPlaying = localStorage.getItem('bgm_playing');
+    // Default to true so music auto-plays on site load
+    this.wasPlaying = storedPlaying === null ? true : (storedPlaying === 'true');
     this.volume = parseFloat(localStorage.getItem('bgm_volume') || '0.75');
     
     this.audio = new Audio();
@@ -30,6 +33,7 @@ class ContinuousMusicController {
 
     this.initAudioElement();
     this.bindEvents();
+    this.attemptAutoplay();
   }
 
   initAudioElement() {
@@ -61,6 +65,38 @@ class ContinuousMusicController {
     });
   }
 
+  attemptAutoplay() {
+    // 1. Immediate play attempt
+    const tryPlay = () => {
+      if (this.wasPlaying && this.audio.paused) {
+        this.audio.play().then(() => {
+          this.notifyListeners(true);
+        }).catch(() => {
+          // Autoplay policy prevented immediate playback; waiting for first interaction
+        });
+      }
+    };
+
+    tryPlay();
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', tryPlay);
+    }
+    window.addEventListener('load', tryPlay);
+
+    // 2. Immediate user interaction unlocker (captures any touch, click, scroll, key, movement)
+    const gestureEvents = ['click', 'touchstart', 'touchend', 'pointerdown', 'scroll', 'keydown', 'wheel'];
+    const unlocker = () => {
+      if (this.wasPlaying && this.audio.paused) {
+        this.play().catch(() => {});
+      }
+      gestureEvents.forEach(evt => window.removeEventListener(evt, unlocker, { capture: true }));
+      gestureEvents.forEach(evt => document.removeEventListener(evt, unlocker, { capture: true }));
+    };
+
+    gestureEvents.forEach(evt => window.addEventListener(evt, unlocker, { capture: true, passive: true }));
+    gestureEvents.forEach(evt => document.addEventListener(evt, unlocker, { capture: true, passive: true }));
+  }
+
   bindEvents() {
     // Save state before leaving page
     window.addEventListener('beforeunload', () => {
@@ -75,26 +111,6 @@ class ContinuousMusicController {
         this.play().catch(() => {});
       }
     });
-
-    // Auto-resume on first interaction if was playing
-    const unlockAutoPlay = () => {
-      if (this.wasPlaying && this.audio.paused) {
-        this.play().catch(() => {});
-      }
-      window.removeEventListener('click', unlockAutoPlay);
-      window.removeEventListener('touchstart', unlockAutoPlay);
-    };
-    window.addEventListener('click', unlockAutoPlay, { once: true });
-    window.addEventListener('touchstart', unlockAutoPlay, { once: true });
-
-    // Try immediate autoplay if browser permits
-    if (this.wasPlaying) {
-      setTimeout(() => {
-        this.play().catch(() => {
-          // Autoplay was prevented; waiting for user gesture
-        });
-      }, 300);
-    }
   }
 
   play() {
@@ -153,7 +169,6 @@ class ContinuousMusicController {
 
   onStateChange(cb) {
     this.listeners.push(cb);
-    // Initial trigger
     cb(!this.audio.paused, this.getCurrentTrack());
   }
 
