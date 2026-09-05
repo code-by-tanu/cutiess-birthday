@@ -1,7 +1,7 @@
 /* ==========================================================================
    SHARED SEAMLESS BACKGROUND MUSIC CONTROLLER
    Maintains continuous playback between index.html and galaxy.html
-   Auto-starts on site load
+   Auto-starts on site load / first user interaction
    ========================================================================== */
 
 class ContinuousMusicController {
@@ -29,25 +29,23 @@ class ContinuousMusicController {
     this.audio.volume = this.volume;
     
     this.listeners = [];
-    this.isInitialized = false;
+    this.hasUnlocked = false;
 
     this.initAudioElement();
     this.bindEvents();
-    this.attemptAutoplay();
+    this.initAutoplay();
   }
 
   initAudioElement() {
     const track = this.tracks[this.currentTrackIdx];
     this.audio.src = track.src;
 
-    // When audio metadata is loaded, restore timestamp
     this.audio.addEventListener('loadedmetadata', () => {
       if (this.savedTime && this.savedTime < this.audio.duration) {
         this.audio.currentTime = this.savedTime;
       }
     });
 
-    // Save timestamp periodically
     this.audio.addEventListener('timeupdate', () => {
       if (!this.audio.paused && this.audio.currentTime > 0) {
         localStorage.setItem('bgm_time', this.audio.currentTime.toString());
@@ -65,47 +63,55 @@ class ContinuousMusicController {
     });
   }
 
-  attemptAutoplay() {
-    // 1. Immediate play attempt
-    const tryPlay = () => {
+  initAutoplay() {
+    const startPlay = () => {
       if (this.wasPlaying && this.audio.paused) {
-        this.audio.play().then(() => {
-          this.notifyListeners(true);
-        }).catch(() => {
-          // Autoplay policy prevented immediate playback; waiting for first interaction
+        this.play().then(() => {
+          this.hasUnlocked = true;
+        }).catch((err) => {
+          // Browser requires user interaction
         });
       }
     };
 
-    tryPlay();
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', tryPlay);
-    }
-    window.addEventListener('load', tryPlay);
+    // Attempt 1: Immediate on script load
+    startPlay();
 
-    // 2. Immediate user interaction unlocker (captures any touch, click, scroll, key, movement)
-    const gestureEvents = ['click', 'touchstart', 'touchend', 'pointerdown', 'scroll', 'keydown', 'wheel'];
-    const unlocker = () => {
+    // Attempt 2: On DOMContentLoaded
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', startPlay);
+    }
+
+    // Attempt 3: On window load
+    window.addEventListener('load', startPlay);
+
+    // Attempt 4: On ANY user gesture anywhere on screen
+    const unlockEvents = ['click', 'touchstart', 'touchend', 'pointerdown', 'mousedown', 'keydown', 'scroll', 'wheel'];
+    const handleGesture = () => {
       if (this.wasPlaying && this.audio.paused) {
-        this.play().catch(() => {});
+        this.play().then(() => {
+          this.hasUnlocked = true;
+        }).catch(() => {});
       }
-      gestureEvents.forEach(evt => window.removeEventListener(evt, unlocker, { capture: true }));
-      gestureEvents.forEach(evt => document.removeEventListener(evt, unlocker, { capture: true }));
+      unlockEvents.forEach(evt => {
+        window.removeEventListener(evt, handleGesture, { capture: true });
+        document.removeEventListener(evt, handleGesture, { capture: true });
+      });
     };
 
-    gestureEvents.forEach(evt => window.addEventListener(evt, unlocker, { capture: true, passive: true }));
-    gestureEvents.forEach(evt => document.addEventListener(evt, unlocker, { capture: true, passive: true }));
+    unlockEvents.forEach(evt => {
+      window.addEventListener(evt, handleGesture, { capture: true, passive: true });
+      document.addEventListener(evt, handleGesture, { capture: true, passive: true });
+    });
   }
 
   bindEvents() {
-    // Save state before leaving page
     window.addEventListener('beforeunload', () => {
       localStorage.setItem('bgm_time', this.audio.currentTime.toString());
       localStorage.setItem('bgm_playing', (!this.audio.paused).toString());
       localStorage.setItem('bgm_track_idx', this.currentTrackIdx.toString());
     });
 
-    // When page becomes visible, verify state
     document.addEventListener('visibilitychange', () => {
       if (!document.hidden && this.wasPlaying && this.audio.paused) {
         this.play().catch(() => {});
@@ -180,5 +186,5 @@ class ContinuousMusicController {
   }
 }
 
-// Create singleton instance
+// Create singleton instance immediately
 window.bgMusic = new ContinuousMusicController();

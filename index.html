@@ -3083,8 +3083,16 @@
             setTimeout(() => helloCta.classList.add('show'), 5400);
 
             helloCta.addEventListener('click', () => {
+                if (window.bgMusic) window.bgMusic.play().catch(() => {});
                 document.getElementById('welcome').scrollIntoView({ behavior: 'smooth' });
             });
+
+            const helloSection = document.getElementById('hello');
+            if (helloSection) {
+                helloSection.addEventListener('click', () => {
+                    if (window.bgMusic) window.bgMusic.play().catch(() => {});
+                });
+            }
 
             /* ---------------------------------------------------------
                2. NAVIGATION — smooth scroll + hamburger
