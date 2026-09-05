@@ -3195,6 +3195,19 @@
         });
 
     </script>
+
+    <!-- 3D Galaxy Portal Button -->
+    <a href="galaxy.html" id="galaxy-portal-btn" style="position:fixed;bottom:24px;right:24px;z-index:9999;display:inline-flex;align-items:center;gap:10px;padding:12px 20px;background:linear-gradient(135deg,#1b1338,#080918);border:1.5px solid rgba(251,211,141,0.55);border-radius:9999px;color:#fff;text-decoration:none;font-family:'Outfit',sans-serif;font-size:0.92rem;font-weight:600;box-shadow:0 8px 30px rgba(0,0,0,0.5),0 0 20px rgba(237,100,166,0.35);transition:all 0.3s cubic-bezier(0.16,1,0.3,1);backdrop-filter:blur(12px);cursor:pointer;" onmouseover="this.style.transform='scale(1.06) translateY(-2px)';this.style.boxShadow='0 12px 35px rgba(0,0,0,0.6), 0 0 28px rgba(251,211,141,0.6)';" onmouseout="this.style.transform='scale(1) translateY(0)';this.style.boxShadow='0 8px 30px rgba(0,0,0,0.5),0 0 20px rgba(237,100,166,0.35)';">
+        <span style="font-size:1.2rem;display:inline-block;animation:spinPlanet 8s linear infinite;">🪐</span>
+        <span style="background:linear-gradient(90deg,#fbd38d,#ed64a6,#90cdf4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Explore 3D Galaxy</span>
+        <span style="font-size:0.72rem;background:rgba(237,100,166,0.25);border:1px solid rgba(237,100,166,0.5);color:#fbb6ce;padding:2px 8px;border-radius:12px;letter-spacing:0.5px;font-weight:700;">NEW</span>
+    </a>
+    <style>
+        @keyframes spinPlanet { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @media (max-width: 600px) {
+            #galaxy-portal-btn { bottom: 16px; right: 16px; padding: 10px 14px; font-size: 0.82rem; }
+        }
+    </style>
 </body>
 
 </html>
