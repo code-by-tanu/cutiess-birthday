@@ -7,8 +7,8 @@
 class ContinuousMusicController {
   constructor() {
     this.tracks = [
-      { name: "song.mpeg", title: "Aayush's Song", src: "music/song.mpeg" },
-      { name: "haareya.mp3", title: "Haareya", src: "music/haareya.mp3" }
+      { name: "haareya.mp3", title: "Haareya", src: "music/haareya.mp3" },
+      { name: "song.mpeg", title: "Aayush's Song", src: "music/song.mpeg" }
     ];
     
     // Read saved state
