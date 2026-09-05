@@ -2894,6 +2894,159 @@
             </div>
         </section>
 
+        <!-- ================= GRAND GALAXY PORTAL SECTION (AFTER FULL SCRAPBOOK IS READ) ================= -->
+        <section id="galaxy-portal-section" class="galaxy-portal-section">
+            <div class="wrap-narrow">
+                <div class="galaxy-card-grand reveal">
+                    <div class="galaxy-cosmic-glow"></div>
+                    <div class="galaxy-portal-badge">
+                        <span>✨ FINAL CHAPTER · 3D SPACE EXPERIENCE ✨</span>
+                    </div>
+                    <h2 class="galaxy-portal-title">The Cosmos Waits For You</h2>
+                    <p class="galaxy-portal-subtitle">"You've read the scrapbook, but our memories are far bigger than pages. Step into your personal 3D solar system."</p>
+                    
+                    <div class="planet-preview-chips">
+                        <span class="chip chip-gold">✦ Planet Childhood</span>
+                        <span class="chip chip-cyan">✦ Planet Calm</span>
+                        <span class="chip chip-purple">✦ Planet Chaos</span>
+                        <span class="chip chip-peach">✦ Planet First Meet</span>
+                        <span class="chip chip-pink">✦ Planet Us</span>
+                        <span class="chip chip-orange">✦ Planet Okhla</span>
+                        <span class="chip chip-blue">✦ Planet Forever</span>
+                    </div>
+
+                    <a href="galaxy.html" class="grand-galaxy-launch-btn" id="btn-launch-galaxy">
+                        <span class="launch-icon">🪐</span>
+                        <span class="launch-text">Launch 3D Universe</span>
+                        <span class="launch-arrow">→</span>
+                    </a>
+                    
+                    <p class="galaxy-portal-hint">Hold & drag to orbit in 3D · Click any glowing planet to unlock memories · Music keeps playing seamlessly</p>
+                </div>
+            </div>
+        </section>
+
+        <style>
+            .galaxy-portal-section {
+                padding: 70px 0 30px;
+                position: relative;
+            }
+            .galaxy-card-grand {
+                position: relative;
+                background: linear-gradient(145deg, #131731 0%, #080a18 100%);
+                border: 1.5px solid rgba(251, 211, 141, 0.4);
+                border-radius: 28px;
+                padding: 48px 32px;
+                text-align: center;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(183, 148, 244, 0.2);
+                overflow: hidden;
+                color: #fff;
+            }
+            .galaxy-cosmic-glow {
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: radial-gradient(circle at 50% 50%, rgba(237, 100, 166, 0.15) 0%, rgba(56, 178, 172, 0.1) 40%, transparent 70%);
+                pointer-events: none;
+                animation: spinSlow 30s linear infinite;
+            }
+            @keyframes spinSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+            .galaxy-portal-badge {
+                display: inline-block;
+                padding: 6px 16px;
+                background: rgba(251, 211, 141, 0.15);
+                border: 1px solid rgba(251, 211, 141, 0.4);
+                border-radius: 9999px;
+                font-size: 0.76rem;
+                font-weight: 700;
+                letter-spacing: 0.08em;
+                color: #fbd38d;
+                margin-bottom: 16px;
+            }
+            .galaxy-portal-title {
+                font-family: 'Fraunces', serif;
+                font-size: 2.2rem;
+                margin-bottom: 12px;
+                background: linear-gradient(135deg, #ffffff 0%, #fbd38d 50%, #ed64a6 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .galaxy-portal-subtitle {
+                font-family: 'Caveat', cursive;
+                font-size: 1.45rem;
+                color: #e2e8f0;
+                max-width: 580px;
+                margin: 0 auto 24px;
+                line-height: 1.4;
+            }
+            .planet-preview-chips {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+                margin-bottom: 30px;
+            }
+            .planet-preview-chips .chip {
+                padding: 5px 12px;
+                border-radius: 9999px;
+                font-size: 0.78rem;
+                font-weight: 600;
+                background: rgba(255, 255, 255, 0.08);
+                border: 1px solid rgba(255, 255, 255, 0.14);
+            }
+            .chip-gold { color: #f6ad55; border-color: rgba(246, 173, 85, 0.4) !important; }
+            .chip-cyan { color: #38b2ac; border-color: rgba(56, 178, 172, 0.4) !important; }
+            .chip-purple { color: #b794f4; border-color: rgba(183, 148, 244, 0.4) !important; }
+            .chip-peach { color: #fbd38d; border-color: rgba(251, 211, 141, 0.4) !important; }
+            .chip-pink { color: #ed64a6; border-color: rgba(237, 100, 166, 0.4) !important; }
+            .chip-orange { color: #ed8936; border-color: rgba(237, 137, 54, 0.4) !important; }
+            .chip-blue { color: #63b3ed; border-color: rgba(99, 179, 237, 0.4) !important; }
+            
+            .grand-galaxy-launch-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 12px;
+                padding: 16px 36px;
+                background: linear-gradient(135deg, #ed64a6 0%, #805ad5 50%, #3182ce 100%);
+                color: #fff;
+                text-decoration: none;
+                border-radius: 9999px;
+                font-size: 1.1rem;
+                font-weight: 700;
+                letter-spacing: 0.02em;
+                box-shadow: 0 10px 30px rgba(237, 100, 166, 0.4), 0 0 20px rgba(128, 90, 213, 0.3);
+                transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            .grand-galaxy-launch-btn:hover {
+                transform: scale(1.05) translateY(-3px);
+                box-shadow: 0 16px 40px rgba(237, 100, 166, 0.6), 0 0 35px rgba(128, 90, 213, 0.5);
+            }
+            .grand-galaxy-launch-btn .launch-icon {
+                font-size: 1.5rem;
+                animation: spinPlanet 8s linear infinite;
+            }
+            .grand-galaxy-launch-btn .launch-arrow {
+                font-size: 1.3rem;
+                transition: transform 0.2s;
+            }
+            .grand-galaxy-launch-btn:hover .launch-arrow {
+                transform: translateX(5px);
+            }
+            .galaxy-portal-hint {
+                font-size: 0.8rem;
+                color: #a0aec0;
+                margin-top: 18px;
+            }
+            @media (max-width: 600px) {
+                .galaxy-card-grand { padding: 32px 18px; border-radius: 20px; }
+                .galaxy-portal-title { font-size: 1.6rem; }
+                .galaxy-portal-subtitle { font-size: 1.2rem; }
+                .grand-galaxy-launch-btn { padding: 13px 24px; font-size: 0.95rem; width: 100%; justify-content: center; }
+            }
+        </style>
+
         <footer>AAYUSH'S LITTLE WORLD · MADE BY BUBBU · 06.09</footer>
 
     </main>
@@ -3196,18 +3349,72 @@
 
     </script>
 
-    <!-- 3D Galaxy Portal Button -->
-    <a href="galaxy.html" id="galaxy-portal-btn" style="position:fixed;bottom:24px;right:24px;z-index:9999;display:inline-flex;align-items:center;gap:10px;padding:12px 20px;background:linear-gradient(135deg,#1b1338,#080918);border:1.5px solid rgba(251,211,141,0.55);border-radius:9999px;color:#fff;text-decoration:none;font-family:'Outfit',sans-serif;font-size:0.92rem;font-weight:600;box-shadow:0 8px 30px rgba(0,0,0,0.5),0 0 20px rgba(237,100,166,0.35);transition:all 0.3s cubic-bezier(0.16,1,0.3,1);backdrop-filter:blur(12px);cursor:pointer;" onmouseover="this.style.transform='scale(1.06) translateY(-2px)';this.style.boxShadow='0 12px 35px rgba(0,0,0,0.6), 0 0 28px rgba(251,211,141,0.6)';" onmouseout="this.style.transform='scale(1) translateY(0)';this.style.boxShadow='0 8px 30px rgba(0,0,0,0.5),0 0 20px rgba(237,100,166,0.35)';">
-        <span style="font-size:1.2rem;display:inline-block;animation:spinPlanet 8s linear infinite;">🪐</span>
-        <span style="background:linear-gradient(90deg,#fbd38d,#ed64a6,#90cdf4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Explore 3D Galaxy</span>
-        <span style="font-size:0.72rem;background:rgba(237,100,166,0.25);border:1px solid rgba(237,100,166,0.5);color:#fbb6ce;padding:2px 8px;border-radius:12px;letter-spacing:0.5px;font-weight:700;">NEW</span>
-    </a>
+    <!-- Shared Background Music Script -->
+    <script src="music-sync.js"></script>
+
+    <!-- Floating Persistent Music Pill Widget -->
+    <div id="scrapbook-music-pill" style="position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;align-items:center;gap:10px;padding:8px 16px;background:rgba(255,250,240,0.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1.5px solid rgba(220,180,140,0.4);border-radius:9999px;box-shadow:0 8px 24px rgba(0,0,0,0.12),0 0 12px rgba(246,173,85,0.25);font-family:'Nunito',sans-serif;transition:all 0.25s ease;">
+        <button id="sb-music-play-btn" aria-label="Play/Pause Music" style="background:linear-gradient(135deg,#f6ad55,#ed64a6);border:none;color:#fff;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 3px 10px rgba(237,100,166,0.3);transition:transform 0.2s;">
+            <svg id="sb-icon-play" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            <svg id="sb-icon-pause" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+        </button>
+        <div style="display:flex;flex-direction:column;">
+            <span id="sb-music-title" style="font-size:0.8rem;font-weight:700;color:#2d3748;max-width:110px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">song.mpeg</span>
+            <div id="sb-music-bars" class="sb-bars" style="display:flex;align-items:flex-end;gap:2px;height:10px;margin-top:2px;">
+                <span></span><span></span><span></span><span></span>
+            </div>
+        </div>
+        <button id="sb-music-switch-btn" title="Switch Song" style="background:rgba(0,0,0,0.06);border:none;color:#4a5568;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+    </div>
+
     <style>
-        @keyframes spinPlanet { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .sb-bars span { width: 2.5px; height: 3px; background: #ed64a6; border-radius: 2px; transition: height 0.2s; }
+        .sb-bars.playing span:nth-child(1) { animation: sbDance 0.8s ease-in-out infinite alternate; }
+        .sb-bars.playing span:nth-child(2) { animation: sbDance 0.6s ease-in-out infinite alternate 0.2s; }
+        .sb-bars.playing span:nth-child(3) { animation: sbDance 0.9s ease-in-out infinite alternate 0.4s; }
+        .sb-bars.playing span:nth-child(4) { animation: sbDance 0.7s ease-in-out infinite alternate 0.1s; }
+        @keyframes sbDance { 0% { height: 3px; } 100% { height: 11px; } }
         @media (max-width: 600px) {
-            #galaxy-portal-btn { bottom: 16px; right: 16px; padding: 10px 14px; font-size: 0.82rem; }
+            #scrapbook-music-pill { bottom: 12px; right: 12px; padding: 6px 12px; }
+            #sb-music-title { max-width: 80px; font-size: 0.75rem; }
         }
     </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const playBtn = document.getElementById('sb-music-play-btn');
+            const switchBtn = document.getElementById('sb-music-switch-btn');
+            const iconPlay = document.getElementById('sb-icon-play');
+            const iconPause = document.getElementById('sb-icon-pause');
+            const musicTitle = document.getElementById('sb-music-title');
+            const musicBars = document.getElementById('sb-music-bars');
+
+            if (window.bgMusic) {
+                window.bgMusic.onStateChange((playing, track) => {
+                    if (playing) {
+                        iconPlay.style.display = 'none';
+                        iconPause.style.display = 'block';
+                        musicBars.classList.add('playing');
+                    } else {
+                        iconPlay.style.display = 'block';
+                        iconPause.style.display = 'none';
+                        musicBars.classList.remove('playing');
+                    }
+                    if (track) musicTitle.textContent = track.name;
+                });
+
+                playBtn.addEventListener('click', () => {
+                    window.bgMusic.toggle();
+                });
+
+                switchBtn.addEventListener('click', () => {
+                    window.bgMusic.switchTrack();
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

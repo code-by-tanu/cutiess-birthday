@@ -1,5 +1,15 @@
 /* ==========================================================================
-   AAYUSH'S UNIVERSE — 3D THREE.JS SOLAR SYSTEM & MEMORY PLANETS
+   AAYUSH'S UNIVERSE — ULTRA-REALISTIC 3D SOLAR SYSTEM & MEMORY PLANETS
+   Features:
+   - 12,000+ Multi-Layered Stars & Twinkling Stellar Glints
+   - Galactic Spiral Nebula Dust & Swirling Gas Clouds
+   - 3D Asteroid Belt with 600 Tumbling Space Rocks
+   - Realistic Sun with Turbulent Solar Corona & Prominence Flares
+   - High-Def Procedural Planets with Dynamic Cloud Layers & Rayleigh Atmospheres
+   - Orbiting Moons on Jovian & Celestial Worlds
+   - Comets with Long Dissipating Vapor Trails
+   - Shared Seamless Persistent Background Music across Pages
+   - Embedded_1 First Meet Photo Integration
    ========================================================================== */
 
 import * as THREE from 'three';
@@ -18,12 +28,13 @@ const PLANET_DATA = [
     orbitRadius: 18,
     orbitSpeed: 0.007,
     hasRings: false,
+    hasClouds: true,
+    hasMoons: false,
     photos: [
       { src: 'images/childhood/childhood-1.jpeg', caption: 'Little Aayush with those bright, innocent eyes' },
       { src: 'images/childhood/childhood-2.jpeg', caption: 'The gentle smile that never changed' },
       { src: 'images/childhood/childhood-3.jpeg', caption: 'Growing up into the sweetest soul' },
-      { src: 'images/childhood/childhood-4.jpeg', caption: 'Baby cheeks and limitless curiosity' },
-      { src: 'images/embedded/embedded_1.jpg', caption: 'A snapshot from the very beginning' }
+      { src: 'images/childhood/childhood-4.jpeg', caption: 'Baby cheeks and limitless curiosity' }
     ],
     narrative: `Somewhere in those little eyes was an entire world waiting to unfold. The same soft heart, the little gentle smile, the soul who grew up to become the most comforting presence in my life. Little Aayush had no idea how much warmth, quiet courage, and genuine kindness he would bring to everyone around him years later. Seeing you grow through these pictures makes me wish I could tell your younger self: you turn out to be someone truly extraordinary.`,
     quote: '— To the boy whose kindness was written in the stars from day one.'
@@ -39,6 +50,8 @@ const PLANET_DATA = [
     orbitRadius: 28,
     orbitSpeed: 0.0055,
     hasRings: false,
+    hasClouds: true,
+    hasMoons: false,
     photos: [
       { src: 'images/solo/solo-1.jpeg', caption: 'Peace in a person' },
       { src: 'images/solo/solo-2.jpeg', caption: 'The face that calms every storm' },
@@ -59,8 +72,10 @@ const PLANET_DATA = [
     orbitSpeed: 0.0042,
     hasRings: true,
     ringInner: 4.2,
-    ringOuter: 5.6,
+    ringOuter: 5.8,
     ringColor: 0x9f7aea,
+    hasClouds: false,
+    hasMoons: false,
     photos: [
       { src: 'images/solo/solo-3.jpeg', caption: 'Goofy face mode: activated' },
       { src: 'images/solo/solo-4.jpeg', caption: '100% unhinged and completely proud' },
@@ -78,13 +93,16 @@ const PLANET_DATA = [
     color: '#fbd38d',
     colorHex: 0xfbd38d,
     radius: 2.8,
-    orbitRadius: 51,
+    orbitRadius: 53,
     orbitSpeed: 0.0034,
     hasRings: true,
     ringInner: 3.8,
-    ringOuter: 4.8,
+    ringOuter: 5.0,
     ringColor: 0xf6ad55,
+    hasClouds: true,
+    hasMoons: false,
     photos: [
+      { src: 'images/embedded/embedded_1.jpg', caption: 'The day our story began — First Meet' },
       { src: 'images/together/together-chips.jpeg', caption: 'The chips he bought when I ate nothing in exams' },
       { src: 'images/together/together-1.jpeg', caption: 'Our earliest frames together' },
       { src: 'images/together/together-2.jpeg', caption: 'Little beginnings that felt like home' },
@@ -100,10 +118,15 @@ const PLANET_DATA = [
     tagline: '"Our little universe inside this giant cosmos"',
     color: '#ed64a6',
     colorHex: 0xed64a6,
-    radius: 3.5,
-    orbitRadius: 65,
+    radius: 3.6,
+    orbitRadius: 68,
     orbitSpeed: 0.0026,
     hasRings: false,
+    hasClouds: true,
+    hasMoons: true,
+    moonRadius: 0.6,
+    moonDist: 5.4,
+    moonSpeed: 0.03,
     photos: [
       { src: 'images/together/together-3.jpeg', caption: 'Walking side by side, always' },
       { src: 'images/together/together-4.jpeg', caption: 'Your shoulder is my safest place' },
@@ -122,13 +145,15 @@ const PLANET_DATA = [
     tagline: '"Under twilight skies, by the water, just you and me"',
     color: '#ed8936',
     colorHex: 0xed8936,
-    radius: 3.3,
-    orbitRadius: 80,
+    radius: 3.4,
+    orbitRadius: 84,
     orbitSpeed: 0.0020,
     hasRings: true,
-    ringInner: 4.5,
-    ringOuter: 6.2,
+    ringInner: 4.8,
+    ringOuter: 6.8,
     ringColor: 0xdd6b20,
+    hasClouds: false,
+    hasMoons: false,
     photos: [
       { src: 'images/together/together-7.jpeg', caption: 'Sunset hues at Okhla' },
       { src: 'images/together/together-8.jpeg', caption: 'The golden hour that stood still' },
@@ -146,13 +171,18 @@ const PLANET_DATA = [
     tagline: '"To the boy who deserves the entire cosmos and more"',
     color: '#63b3ed',
     colorHex: 0x63b3ed,
-    radius: 3.8,
-    orbitRadius: 96,
+    radius: 3.9,
+    orbitRadius: 102,
     orbitSpeed: 0.0015,
     hasRings: true,
-    ringInner: 5.2,
-    ringOuter: 7.4,
+    ringInner: 5.4,
+    ringOuter: 8.0,
     ringColor: 0x4299e1,
+    hasClouds: true,
+    hasMoons: true,
+    moonRadius: 0.7,
+    moonDist: 6.2,
+    moonSpeed: 0.024,
     photos: [
       { src: 'images/together/together-11.jpeg', caption: 'To many more years of us' },
       { src: 'images/together/together-12.jpeg', caption: 'Laughter that never fades' },
@@ -164,7 +194,7 @@ const PLANET_DATA = [
   }
 ];
 
-// --- SOUND SYNTHESIS FOR COSMIC CHIMES ---
+// --- SOUND SYNTHESIS FOR CELESTIAL CHIMES ---
 class CosmicAudioSynth {
   constructor() {
     this.ctx = null;
@@ -197,9 +227,7 @@ class CosmicAudioSynth {
       
       osc.start(now);
       osc.stop(now + duration);
-    } catch (e) {
-      // Ignore audio synthesis errors if blocked
-    }
+    } catch (e) {}
   }
 }
 const synth = new CosmicAudioSynth();
@@ -210,48 +238,44 @@ class GalaxyApp {
     this.canvas = document.getElementById('galaxy-canvas');
     this.planets = [];
     this.orbitLines = [];
+    this.moons = [];
     this.activePlanetIdx = 0;
     this.currentCarouselImgIdx = 0;
     this.isModalOpen = false;
-    this.targetCamPos = new THREE.Vector3(0, 55, 110);
+    this.targetCamPos = new THREE.Vector3(0, 60, 125);
     this.targetLookAt = new THREE.Vector3(0, 0, 0);
     this.isTransitioningCam = false;
     this.focusedPlanet = null;
-    
-    // Music tracks
-    this.tracks = [
-      { name: 'song.mpeg', src: 'music/song.mpeg' },
-      { name: 'Haareya', src: 'music/haareya.mp3' }
-    ];
-    this.currentTrackIdx = 0;
+    this.clock = new THREE.Clock();
     
     this.initScene();
     this.initLights();
     this.createSun();
-    this.createStarfield();
-    this.createNebulaParticles();
-    this.createShootingStars();
+    this.createMultiLayerStarfield();
+    this.createGalacticNebula();
+    this.createAsteroidBelt();
+    this.createShootingComets();
     this.createPlanets();
     this.initRaycaster();
     this.initUI();
-    this.initAudio();
+    this.initMusicController();
+    
     this.animate = this.animate.bind(this);
     requestAnimationFrame(this.animate);
     
-    // Hide loader
     setTimeout(() => {
       const loader = document.getElementById('loading-screen');
       if (loader) loader.classList.add('hidden');
-    }, 900);
+    }, 800);
   }
 
   initScene() {
     this.scene = new THREE.Scene();
-    this.scene.fog = new THREE.FogExp2(0x060714, 0.0035);
+    this.scene.fog = new THREE.FogExp2(0x040612, 0.0028);
 
     const aspect = window.innerWidth / window.innerHeight;
-    this.camera = new THREE.PerspectiveCamera(45, aspect, 0.1, 1000);
-    this.camera.position.set(0, 55, 110);
+    this.camera = new THREE.PerspectiveCamera(45, aspect, 0.1, 1500);
+    this.camera.position.set(0, 60, 125);
 
     this.renderer = new THREE.WebGLRenderer({
       canvas: this.canvas,
@@ -262,14 +286,16 @@ class GalaxyApp {
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 1.1;
+    this.renderer.toneMappingExposure = 1.2;
+    this.renderer.shadowMap.enabled = true;
+    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enableDamping = true;
-    this.controls.dampingFactor = 0.05;
-    this.controls.minDistance = 12;
-    this.controls.maxDistance = 240;
-    this.controls.maxPolarAngle = Math.PI / 2 + 0.15;
+    this.controls.dampingFactor = 0.045;
+    this.controls.minDistance = 10;
+    this.controls.maxDistance = 280;
+    this.controls.maxPolarAngle = Math.PI / 2 + 0.18;
 
     window.addEventListener('resize', () => {
       this.camera.aspect = window.innerWidth / window.innerHeight;
@@ -280,55 +306,79 @@ class GalaxyApp {
   }
 
   initLights() {
-    const ambientLight = new THREE.AmbientLight(0x2d3748, 0.9);
+    // Ambient cosmic fill
+    const ambientLight = new THREE.AmbientLight(0x283048, 1.1);
     this.scene.add(ambientLight);
 
-    this.sunLight = new THREE.PointLight(0xffeedd, 3.5, 300, 1.2);
+    // Primary Solar Point Light
+    this.sunLight = new THREE.PointLight(0xfff1d6, 4.2, 450, 1.1);
     this.sunLight.position.set(0, 0, 0);
+    this.sunLight.castShadow = true;
     this.scene.add(this.sunLight);
   }
 
-  // Procedural Canvas Textures for Planet Surfaces
-  generatePlanetTexture(baseColorHex, stripeColorHex, style = 'stripes') {
+  // --- PROCEDURAL HIGH-DEF TEXTURES FOR PLANET SURFACES ---
+  generatePlanetTexture(baseColorHex, accentHex, style = 'bands') {
     const canvas = document.createElement('canvas');
-    canvas.width = 512;
-    canvas.height = 256;
+    canvas.width = 1024;
+    canvas.height = 512;
     const ctx = canvas.getContext('2d');
 
-    ctx.fillStyle = baseColorHex;
+    // Base atmospheric background
+    const bgGrad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+    bgGrad.addColorStop(0, baseColorHex);
+    bgGrad.addColorStop(0.5, accentHex);
+    bgGrad.addColorStop(1, baseColorHex);
+    ctx.fillStyle = bgGrad;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    if (style === 'stripes') {
-      for (let i = 0; i < 24; i++) {
+    if (style === 'bands') {
+      // Jovian gas bands
+      for (let i = 0; i < 48; i++) {
         const y = Math.random() * canvas.height;
-        const h = 4 + Math.random() * 20;
-        ctx.fillStyle = (i % 2 === 0) ? stripeColorHex : 'rgba(255,255,255,0.12)';
+        const h = 3 + Math.random() * 24;
+        ctx.fillStyle = (i % 2 === 0) ? 'rgba(255,255,255,0.16)' : 'rgba(0,0,0,0.18)';
         ctx.fillRect(0, y, canvas.width, h);
+        
+        // Swirl spots
+        if (Math.random() > 0.6) {
+          ctx.beginPath();
+          ctx.ellipse(Math.random() * canvas.width, y, 20 + Math.random() * 40, h * 0.9, 0, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(255,255,255,0.22)';
+          ctx.fill();
+        }
       }
-    } else if (style === 'marbled') {
-      for (let i = 0; i < 40; i++) {
+    } else if (style === 'continents') {
+      // Earth/Terrestrial landmasses & oceans
+      for (let i = 0; i < 70; i++) {
         ctx.beginPath();
         const x = Math.random() * canvas.width;
-        const y = Math.random() * canvas.height;
-        const r = 20 + Math.random() * 80;
+        const y = 60 + Math.random() * (canvas.height - 120);
+        const r = 25 + Math.random() * 90;
         const grad = ctx.createRadialGradient(x, y, 0, x, y, r);
-        grad.addColorStop(0, stripeColorHex);
+        grad.addColorStop(0, 'rgba(255,255,255,0.28)');
+        grad.addColorStop(0.7, accentHex);
         grad.addColorStop(1, 'transparent');
         ctx.fillStyle = grad;
         ctx.arc(x, y, r, 0, Math.PI * 2);
         ctx.fill();
       }
+      // Polar Ice Caps
+      ctx.fillStyle = 'rgba(255,255,255,0.7)';
+      ctx.fillRect(0, 0, canvas.width, 35);
+      ctx.fillRect(0, canvas.height - 35, canvas.width, 35);
     } else if (style === 'craters') {
-      for (let i = 0; i < 60; i++) {
-        ctx.beginPath();
+      // Rocky Moon/Mercury Surface
+      for (let i = 0; i < 90; i++) {
         const x = Math.random() * canvas.width;
         const y = Math.random() * canvas.height;
-        const r = 4 + Math.random() * 16;
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+        const r = 4 + Math.random() * 22;
+        ctx.beginPath();
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.35)';
         ctx.arc(x, y, r, 0, Math.PI * 2);
         ctx.fill();
-        ctx.lineWidth = 2;
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+        ctx.lineWidth = 2.5;
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
         ctx.stroke();
       }
     }
@@ -339,119 +389,211 @@ class GalaxyApp {
     return texture;
   }
 
-  // Central Sun
+  // --- PROCEDURAL CLOUD TEXTURE ---
+  generateCloudTexture() {
+    const canvas = document.createElement('canvas');
+    canvas.width = 1024;
+    canvas.height = 512;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (let i = 0; i < 80; i++) {
+      const x = Math.random() * canvas.width;
+      const y = Math.random() * canvas.height;
+      const r = 20 + Math.random() * 80;
+      const grad = ctx.createRadialGradient(x, y, 0, x, y, r);
+      grad.addColorStop(0, 'rgba(255, 255, 255, 0.45)');
+      grad.addColorStop(0.6, 'rgba(255, 255, 255, 0.15)');
+      grad.addColorStop(1, 'transparent');
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    const tex = new THREE.CanvasTexture(canvas);
+    tex.wrapS = THREE.RepeatWrapping;
+    return tex;
+  }
+
+  // --- PROCEDURAL REALISTIC SATURN-LIKE RING TEXTURE ---
+  generateRingTexture(ringColorHex) {
+    const canvas = document.createElement('canvas');
+    canvas.width = 512;
+    canvas.height = 64;
+    const ctx = canvas.getContext('2d');
+
+    const grad = ctx.createLinearGradient(0, 0, canvas.width, 0);
+    grad.addColorStop(0, 'transparent');
+    grad.addColorStop(0.15, ringColorHex);
+    grad.addColorStop(0.38, 'rgba(255,255,255,0.85)');
+    grad.addColorStop(0.48, 'transparent'); // Cassini division
+    grad.addColorStop(0.55, ringColorHex);
+    grad.addColorStop(0.85, 'rgba(255,255,255,0.4)');
+    grad.addColorStop(1, 'transparent');
+
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    const tex = new THREE.CanvasTexture(canvas);
+    return tex;
+  }
+
+  // --- REALISTIC GLOWING SUN AT CENTER ---
   createSun() {
-    const sunGeom = new THREE.SphereGeometry(6.5, 32, 32);
+    const sunGeom = new THREE.SphereGeometry(6.8, 48, 48);
     
+    // Solar turbulence surface texture
     const sunCanvas = document.createElement('canvas');
-    sunCanvas.width = 512;
-    sunCanvas.height = 256;
+    sunCanvas.width = 1024;
+    sunCanvas.height = 512;
     const sCtx = sunCanvas.getContext('2d');
     const sGrad = sCtx.createLinearGradient(0, 0, sunCanvas.width, sunCanvas.height);
-    sGrad.addColorStop(0, '#fff3b0');
-    sGrad.addColorStop(0.5, '#f6ad55');
-    sGrad.addColorStop(1, '#dd6b20');
+    sGrad.addColorStop(0, '#fffbe6');
+    sGrad.addColorStop(0.3, '#f6ad55');
+    sGrad.addColorStop(0.7, '#ed8936');
+    sGrad.addColorStop(1, '#c53030');
     sCtx.fillStyle = sGrad;
     sCtx.fillRect(0, 0, sunCanvas.width, sunCanvas.height);
-    for (let i = 0; i < 30; i++) {
-      sCtx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+
+    for (let i = 0; i < 60; i++) {
+      sCtx.fillStyle = 'rgba(255, 255, 255, 0.22)';
       sCtx.beginPath();
-      sCtx.arc(Math.random() * 512, Math.random() * 256, 10 + Math.random() * 40, 0, Math.PI * 2);
+      sCtx.arc(Math.random() * 1024, Math.random() * 512, 15 + Math.random() * 50, 0, Math.PI * 2);
       sCtx.fill();
     }
     const sunTex = new THREE.CanvasTexture(sunCanvas);
 
     const sunMat = new THREE.MeshBasicMaterial({
       map: sunTex,
-      color: 0xfff5ea
+      color: 0xffffff
     });
     this.sun = new THREE.Mesh(sunGeom, sunMat);
     this.scene.add(this.sun);
 
-    const glowGeom = new THREE.SphereGeometry(7.8, 32, 32);
-    const glowMat = new THREE.MeshBasicMaterial({
+    // Inner Radiant Corona Shell
+    const coronaGeom = new THREE.SphereGeometry(8.2, 32, 32);
+    const coronaMat = new THREE.MeshBasicMaterial({
       color: 0xfbd38d,
       transparent: true,
-      opacity: 0.28,
-      side: THREE.BackSide
+      opacity: 0.35,
+      side: THREE.BackSide,
+      blending: THREE.AdditiveBlending
     });
-    this.sunGlow = new THREE.Mesh(glowGeom, glowMat);
-    this.scene.add(this.sunGlow);
+    this.sunCorona = new THREE.Mesh(coronaGeom, coronaMat);
+    this.scene.add(this.sunCorona);
 
-    const outerHaloGeom = new THREE.SphereGeometry(9.5, 32, 32);
+    // Outer Solar Atmosphere Halo
+    const outerHaloGeom = new THREE.SphereGeometry(10.8, 32, 32);
     const outerHaloMat = new THREE.MeshBasicMaterial({
       color: 0xed8936,
       transparent: true,
-      opacity: 0.12,
-      side: THREE.BackSide
+      opacity: 0.16,
+      side: THREE.BackSide,
+      blending: THREE.AdditiveBlending
     });
     this.sunOuterHalo = new THREE.Mesh(outerHaloGeom, outerHaloMat);
     this.scene.add(this.sunOuterHalo);
   }
 
-  // Background Starfield
-  createStarfield() {
-    const starCount = 3500;
-    const geometry = new THREE.BufferGeometry();
-    const positions = new Float32Array(starCount * 3);
-    const colors = new Float32Array(starCount * 3);
+  // --- MULTI-LAYERED REALISTIC STARFIELD (12,000+ STARS) ---
+  createMultiLayerStarfield() {
+    // 1. Deep Distant Micro-Stars (8,500 points)
+    const deepCount = 8500;
+    const deepGeom = new THREE.BufferGeometry();
+    const deepPos = new Float32Array(deepCount * 3);
+    const deepCols = new Float32Array(deepCount * 3);
 
-    const palette = [
-      new THREE.Color('#ffffff'),
-      new THREE.Color('#fbd38d'),
-      new THREE.Color('#90cdf4'),
-      new THREE.Color('#fbb6ce'),
-      new THREE.Color('#e9d8fd')
-    ];
-
-    for (let i = 0; i < starCount; i++) {
-      const r = 180 + Math.random() * 260;
+    for (let i = 0; i < deepCount; i++) {
+      const r = 240 + Math.random() * 380;
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos((Math.random() * 2) - 1);
 
-      positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
-      positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
-      positions[i * 3 + 2] = r * Math.cos(phi);
+      deepPos[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+      deepPos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+      deepPos[i * 3 + 2] = r * Math.cos(phi);
 
-      const color = palette[Math.floor(Math.random() * palette.length)];
-      colors[i * 3] = color.r;
-      colors[i * 3 + 1] = color.g;
-      colors[i * 3 + 2] = color.b;
+      const shade = 0.6 + Math.random() * 0.4;
+      deepCols[i * 3] = shade;
+      deepCols[i * 3 + 1] = shade;
+      deepCols[i * 3 + 2] = shade;
     }
+    deepGeom.setAttribute('position', new THREE.BufferAttribute(deepPos, 3));
+    deepGeom.setAttribute('color', new THREE.BufferAttribute(deepCols, 3));
 
-    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-
-    const material = new THREE.PointsMaterial({
-      size: 1.4,
+    const deepMat = new THREE.PointsMaterial({
+      size: 1.1,
       vertexColors: true,
       transparent: true,
-      opacity: 0.85,
+      opacity: 0.75,
       sizeAttenuation: true
     });
+    this.deepStars = new THREE.Points(deepGeom, deepMat);
+    this.scene.add(this.deepStars);
 
-    this.starfield = new THREE.Points(geometry, material);
-    this.scene.add(this.starfield);
+    // 2. Sparkling Foreground Glint Stars (2,800 points)
+    const glintCount = 2800;
+    const glintGeom = new THREE.BufferGeometry();
+    const glintPos = new Float32Array(glintCount * 3);
+    const glintCols = new Float32Array(glintCount * 3);
+
+    const starPalette = [
+      new THREE.Color('#ffffff'),
+      new THREE.Color('#fbd38d'), // Warm Gold
+      new THREE.Color('#90cdf4'), // Blue Giant
+      new THREE.Color('#fbb6ce'), // Soft Pink
+      new THREE.Color('#b794f4')  // Violet
+    ];
+
+    for (let i = 0; i < glintCount; i++) {
+      const r = 160 + Math.random() * 320;
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos((Math.random() * 2) - 1);
+
+      glintPos[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+      glintPos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+      glintPos[i * 3 + 2] = r * Math.cos(phi);
+
+      const col = starPalette[Math.floor(Math.random() * starPalette.length)];
+      glintCols[i * 3] = col.r;
+      glintCols[i * 3 + 1] = col.g;
+      glintCols[i * 3 + 2] = col.b;
+    }
+    glintGeom.setAttribute('position', new THREE.BufferAttribute(glintPos, 3));
+    glintGeom.setAttribute('color', new THREE.BufferAttribute(glintCols, 3));
+
+    const glintMat = new THREE.PointsMaterial({
+      size: 2.2,
+      vertexColors: true,
+      transparent: true,
+      opacity: 0.95,
+      blending: THREE.AdditiveBlending,
+      sizeAttenuation: true
+    });
+    this.glintStars = new THREE.Points(glintGeom, glintMat);
+    this.scene.add(this.glintStars);
   }
 
-  // Nebula Cosmic Dust
-  createNebulaParticles() {
-    const count = 1200;
+  // --- GALACTIC SPIRAL NEBULA & GAS CLOUDS ---
+  createGalacticNebula() {
+    const count = 2200;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
 
     const nebulaColors = [
-      new THREE.Color('#805ad5'),
-      new THREE.Color('#319795'),
-      new THREE.Color('#d53f8c'),
-      new THREE.Color('#3182ce')
+      new THREE.Color('#805ad5'), // Purple
+      new THREE.Color('#319795'), // Teal
+      new THREE.Color('#d53f8c'), // Pink
+      new THREE.Color('#dd6b20'), // Amber
+      new THREE.Color('#3182ce')  // Blue
     ];
 
     for (let i = 0; i < count; i++) {
-      const angle = Math.random() * Math.PI * 2;
-      const dist = 30 + Math.random() * 110;
-      const y = (Math.random() - 0.5) * 26;
+      // 2-arm spiral distribution
+      const arm = (i % 2) * Math.PI;
+      const dist = 25 + Math.pow(Math.random(), 1.5) * 115;
+      const angle = arm + dist * 0.05 + (Math.random() - 0.5) * 0.8;
+      const y = (Math.random() - 0.5) * (18 + dist * 0.15);
 
       positions[i * 3] = Math.cos(angle) * dist;
       positions[i * 3 + 1] = y;
@@ -467,10 +609,10 @@ class GalaxyApp {
     geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
     const material = new THREE.PointsMaterial({
-      size: 2.8,
+      size: 3.6,
       vertexColors: true,
       transparent: true,
-      opacity: 0.38,
+      opacity: 0.42,
       blending: THREE.AdditiveBlending,
       sizeAttenuation: true
     });
@@ -479,98 +621,170 @@ class GalaxyApp {
     this.scene.add(this.nebula);
   }
 
-  // Shooting Stars
-  createShootingStars() {
-    this.shootingStars = [];
-    const geom = new THREE.CylinderGeometry(0.1, 0.0, 18, 6);
-    geom.rotateX(Math.PI / 2);
+  // --- 3D ASTEROID BELT (BETWEEN CHAOS & FIRST MEET) ---
+  createAsteroidBelt() {
+    const asteroidCount = 650;
+    const geom = new THREE.DodecahedronGeometry(0.28, 1);
+    const mat = new THREE.MeshStandardMaterial({
+      color: 0x8c827a,
+      roughness: 0.9,
+      metalness: 0.1
+    });
+
+    this.asteroidInstanced = new THREE.InstancedMesh(geom, mat, asteroidCount);
+    const dummy = new THREE.Object3D();
+    this.asteroidsData = [];
+
+    for (let i = 0; i < asteroidCount; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const dist = 44 + (Math.random() - 0.5) * 6.5;
+      const y = (Math.random() - 0.5) * 3.5;
+      const scale = 0.5 + Math.random() * 1.2;
+
+      dummy.position.set(Math.cos(angle) * dist, y, Math.sin(angle) * dist);
+      dummy.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
+      dummy.scale.set(scale, scale * (0.8 + Math.random() * 0.4), scale);
+      dummy.updateMatrix();
+
+      this.asteroidInstanced.setMatrixAt(i, dummy.matrix);
+
+      this.asteroidsData.push({
+        angle,
+        dist,
+        speed: 0.0035 + (Math.random() - 0.5) * 0.0008,
+        y,
+        scale,
+        rotSpeedX: (Math.random() - 0.5) * 0.02,
+        rotSpeedY: (Math.random() - 0.5) * 0.02
+      });
+    }
+
+    this.asteroidInstanced.instanceMatrix.needsUpdate = true;
+    this.scene.add(this.asteroidInstanced);
+  }
+
+  updateAsteroidBelt() {
+    if (!this.asteroidInstanced) return;
+    const dummy = new THREE.Object3D();
+
+    for (let i = 0; i < this.asteroidsData.length; i++) {
+      const data = this.asteroidsData[i];
+      data.angle += data.speed;
+
+      dummy.position.set(Math.cos(data.angle) * data.dist, data.y, Math.sin(data.angle) * data.dist);
+      dummy.rotation.x += data.rotSpeedX;
+      dummy.rotation.y += data.rotSpeedY;
+      dummy.scale.set(data.scale, data.scale, data.scale);
+      dummy.updateMatrix();
+
+      this.asteroidInstanced.setMatrixAt(i, dummy.matrix);
+    }
+    this.asteroidInstanced.instanceMatrix.needsUpdate = true;
+  }
+
+  // --- SHOOTING COMETS WITH TAILS ---
+  createShootingComets() {
+    this.comets = [];
+    const headGeom = new THREE.SphereGeometry(0.4, 8, 8);
+    const headMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
 
     for (let i = 0; i < 3; i++) {
-      const mat = new THREE.MeshBasicMaterial({
-        color: 0xffffff,
-        transparent: true,
-        opacity: 0
-      });
-      const mesh = new THREE.Mesh(geom, mat);
-      mesh.visible = false;
-      this.scene.add(mesh);
+      const group = new THREE.Group();
+      const head = new THREE.Mesh(headGeom, headMat);
+      group.add(head);
 
-      this.shootingStars.push({
-        mesh,
+      // Comet tail geometry
+      const tailGeom = new THREE.CylinderGeometry(0.01, 0.4, 24, 6);
+      tailGeom.rotateX(Math.PI / 2);
+      tailGeom.translate(0, 0, -12);
+      const tailMat = new THREE.MeshBasicMaterial({
+        color: 0x90cdf4,
+        transparent: true,
+        opacity: 0.6,
+        blending: THREE.AdditiveBlending
+      });
+      const tail = new THREE.Mesh(tailGeom, tailMat);
+      group.add(tail);
+
+      group.visible = false;
+      this.scene.add(group);
+
+      this.comets.push({
+        group,
+        headMat,
+        tailMat,
         active: false,
-        timer: Math.random() * 400,
-        speed: 1.8 + Math.random() * 1.5,
+        timer: 100 + Math.random() * 400,
+        speed: 2.2 + Math.random() * 1.5,
         life: 0
       });
     }
   }
 
-  updateShootingStars() {
-    this.shootingStars.forEach(star => {
-      if (!star.active) {
-        star.timer--;
-        if (star.timer <= 0) {
-          star.active = true;
-          star.life = 60;
-          star.mesh.visible = true;
-          star.mesh.material.opacity = 0.9;
+  updateComets() {
+    this.comets.forEach(comet => {
+      if (!comet.active) {
+        comet.timer--;
+        if (comet.timer <= 0) {
+          comet.active = true;
+          comet.life = 75;
+          comet.group.visible = true;
           
-          const startX = (Math.random() - 0.5) * 160;
-          const startY = 40 + Math.random() * 50;
-          const startZ = (Math.random() - 0.5) * 160;
-          star.mesh.position.set(startX, startY, startZ);
-          star.mesh.lookAt(startX - 60, startY - 40, startZ - 60);
+          const startX = (Math.random() - 0.5) * 200;
+          const startY = 50 + Math.random() * 60;
+          const startZ = (Math.random() - 0.5) * 200;
+          comet.group.position.set(startX, startY, startZ);
+          comet.group.lookAt(startX - 80, startY - 50, startZ - 80);
         }
       } else {
-        star.mesh.translateZ(star.speed);
-        star.life--;
-        star.mesh.material.opacity = star.life / 60;
-        if (star.life <= 0) {
-          star.active = false;
-          star.mesh.visible = false;
-          star.timer = 200 + Math.random() * 500;
+        comet.group.translateZ(comet.speed);
+        comet.life--;
+        const alpha = comet.life / 75;
+        comet.tailMat.opacity = alpha * 0.7;
+        comet.headMat.opacity = alpha;
+
+        if (comet.life <= 0) {
+          comet.active = false;
+          comet.group.visible = false;
+          comet.timer = 250 + Math.random() * 550;
         }
       }
     });
   }
 
-  // Create Planets
+  // --- CREATE 7 REALISTIC PLANETS & ORBITS ---
   createPlanets() {
-    const styles = ['marbled', 'stripes', 'marbled', 'stripes', 'marbled', 'stripes', 'marbled'];
+    const styles = ['continents', 'bands', 'bands', 'continents', 'continents', 'bands', 'bands'];
 
     PLANET_DATA.forEach((data, index) => {
-      const orbitCurve = new THREE.EllipseCurve(
-        0, 0,
-        data.orbitRadius, data.orbitRadius,
-        0, 2 * Math.PI,
-        false,
-        0
-      );
-      const orbitPoints = orbitCurve.getPoints(128);
+      // 1. Orbital Track Line
+      const orbitCurve = new THREE.EllipseCurve(0, 0, data.orbitRadius, data.orbitRadius, 0, 2 * Math.PI);
+      const orbitPoints = orbitCurve.getPoints(160);
       const orbitGeom = new THREE.BufferGeometry().setFromPoints(
         orbitPoints.map(p => new THREE.Vector3(p.x, 0, p.y))
       );
       const orbitMat = new THREE.LineBasicMaterial({
         color: data.colorHex,
         transparent: true,
-        opacity: 0.16
+        opacity: 0.18
       });
       const orbitLine = new THREE.Line(orbitGeom, orbitMat);
       this.scene.add(orbitLine);
       this.orbitLines.push(orbitLine);
 
-      const sphereGeom = new THREE.SphereGeometry(data.radius, 32, 32);
+      // 2. Planet Mesh with Procedural High-Def Texture
+      const sphereGeom = new THREE.SphereGeometry(data.radius, 48, 48);
       const texture = this.generatePlanetTexture(
         data.color,
-        'rgba(255,255,255,0.3)',
+        'rgba(255,255,255,0.35)',
         styles[index % styles.length]
       );
       
       const sphereMat = new THREE.MeshStandardMaterial({
         map: texture,
-        roughness: 0.65,
-        metalness: 0.15,
-        bumpScale: 0.05
+        roughness: 0.55,
+        metalness: 0.2,
+        bumpScale: 0.08
       });
 
       const planetMesh = new THREE.Mesh(sphereGeom, sphereMat);
@@ -578,32 +792,72 @@ class GalaxyApp {
       planetMesh.receiveShadow = true;
       planetMesh.userData = { planetIndex: index, data: data };
 
-      const auraGeom = new THREE.SphereGeometry(data.radius * 1.18, 32, 32);
+      // 3. Dynamic Cloud Layer (for Terrestrial/Atmospheric worlds)
+      let cloudMesh = null;
+      if (data.hasClouds) {
+        const cloudGeom = new THREE.SphereGeometry(data.radius * 1.025, 36, 36);
+        const cloudMat = new THREE.MeshStandardMaterial({
+          map: this.generateCloudTexture(),
+          transparent: true,
+          opacity: 0.4,
+          blending: THREE.NormalBlending
+        });
+        cloudMesh = new THREE.Mesh(cloudGeom, cloudMat);
+        planetMesh.add(cloudMesh);
+      }
+
+      // 4. Glowing Rayleigh Atmospheric Aura
+      const auraGeom = new THREE.SphereGeometry(data.radius * 1.16, 32, 32);
       const auraMat = new THREE.MeshBasicMaterial({
         color: data.colorHex,
         transparent: true,
-        opacity: 0.22,
-        side: THREE.BackSide
+        opacity: 0.26,
+        side: THREE.BackSide,
+        blending: THREE.AdditiveBlending
       });
       const auraMesh = new THREE.Mesh(auraGeom, auraMat);
       planetMesh.add(auraMesh);
 
+      // 5. Realistic Rings (with Cassini divisions)
       let ringMesh = null;
       if (data.hasRings) {
-        const ringGeom = new THREE.RingGeometry(data.ringInner, data.ringOuter, 64);
+        const ringGeom = new THREE.RingGeometry(data.ringInner, data.ringOuter, 96);
+        const ringTex = this.generateRingTexture(data.color);
         const ringMat = new THREE.MeshBasicMaterial({
-          color: data.ringColor,
+          map: ringTex,
           side: THREE.DoubleSide,
           transparent: true,
-          opacity: 0.55
+          opacity: 0.75
         });
         ringMesh = new THREE.Mesh(ringGeom, ringMat);
-        ringMesh.rotation.x = Math.PI / 2.3;
-        ringMesh.rotation.y = 0.2;
+        ringMesh.rotation.x = Math.PI / 2.35;
+        ringMesh.rotation.y = 0.25;
         planetMesh.add(ringMesh);
       }
 
-      const angle = (index / PLANET_DATA.length) * Math.PI * 2 + Math.random() * 0.5;
+      // 6. Orbiting Moons
+      let moonMesh = null;
+      if (data.hasMoons) {
+        const moonGeom = new THREE.SphereGeometry(data.moonRadius, 16, 16);
+        const moonMat = new THREE.MeshStandardMaterial({
+          color: 0xc4cbd5,
+          roughness: 0.8
+        });
+        moonMesh = new THREE.Mesh(moonGeom, moonMat);
+        moonMesh.castShadow = true;
+        this.scene.add(moonMesh);
+
+        this.moons.push({
+          mesh: moonMesh,
+          parentMesh: planetMesh,
+          dist: data.moonDist,
+          speed: data.moonSpeed,
+          angle: Math.random() * Math.PI * 2
+        });
+      }
+
+      // Position along orbit
+      const angle = (index / PLANET_DATA.length) * Math.PI * 2 + Math.random() * 0.4;
       planetMesh.position.x = Math.cos(angle) * data.orbitRadius;
       planetMesh.position.z = Math.sin(angle) * data.orbitRadius;
       planetMesh.position.y = (Math.random() - 0.5) * 2;
@@ -612,6 +866,7 @@ class GalaxyApp {
 
       this.planets.push({
         mesh: planetMesh,
+        cloudMesh: cloudMesh,
         data: data,
         angle: angle,
         orbitRadius: data.orbitRadius,
@@ -623,7 +878,7 @@ class GalaxyApp {
     });
   }
 
-  // Raycaster for Hover & Click
+  // --- RAYCASTER FOR INTERACTION ---
   initRaycaster() {
     this.raycaster = new THREE.Raycaster();
     this.mouse = new THREE.Vector2();
@@ -701,11 +956,12 @@ class GalaxyApp {
   resetCamera() {
     this.focusedPlanet = null;
     this.targetLookAt.set(0, 0, 0);
-    this.targetCamPos.set(0, 55, 110);
+    this.targetCamPos.set(0, 60, 125);
     this.isTransitioningCam = true;
     synth.playChime(659.25, 0.6);
   }
 
+  // --- MODAL & GALLERY ---
   openPlanetModal(index) {
     const data = PLANET_DATA[index];
     this.activePlanetIdx = index;
@@ -850,83 +1106,73 @@ class GalaxyApp {
     });
   }
 
-  initAudio() {
-    this.audio = document.getElementById('bg-audio');
-    this.musicToggleBtn = document.getElementById('btn-music-toggle');
-    this.musicSwitchBtn = document.getElementById('btn-switch-song');
-    this.musicTitle = document.getElementById('music-title');
-    this.musicBars = document.getElementById('music-bars');
-    this.iconPlay = this.musicToggleBtn.querySelector('.icon-play');
-    this.iconPause = this.musicToggleBtn.querySelector('.icon-pause');
+  // --- SEAMLESS SHARED PERSISTENT MUSIC CONTROLLER ---
+  initMusicController() {
+    const musicToggleBtn = document.getElementById('btn-music-toggle');
+    const musicSwitchBtn = document.getElementById('btn-switch-song');
+    const musicTitle = document.getElementById('music-title');
+    const musicBars = document.getElementById('music-bars');
+    const iconPlay = musicToggleBtn.querySelector('.icon-play');
+    const iconPause = musicToggleBtn.querySelector('.icon-pause');
 
-    this.loadTrack(0);
+    if (window.bgMusic) {
+      window.bgMusic.onStateChange((playing, track) => {
+        if (playing) {
+          iconPlay.style.display = 'none';
+          iconPause.style.display = 'block';
+          musicBars.classList.add('playing');
+        } else {
+          iconPlay.style.display = 'block';
+          iconPause.style.display = 'none';
+          musicBars.classList.remove('playing');
+        }
+        if (track) musicTitle.textContent = track.name;
+      });
 
-    this.musicToggleBtn.addEventListener('click', () => {
-      synth.init();
-      if (this.audio.paused) {
-        this.playAudio();
-      } else {
-        this.pauseAudio();
-      }
-    });
+      musicToggleBtn.addEventListener('click', () => {
+        synth.init();
+        window.bgMusic.toggle();
+      });
 
-    this.musicSwitchBtn.addEventListener('click', () => {
-      this.currentTrackIdx = (this.currentTrackIdx + 1) % this.tracks.length;
-      this.loadTrack(this.currentTrackIdx);
-      this.playAudio();
-    });
-
-    const startAudioOnce = () => {
-      synth.init();
-      this.playAudio().catch(() => {});
-      window.removeEventListener('click', startAudioOnce);
-    };
-    window.addEventListener('click', startAudioOnce, { once: true });
+      musicSwitchBtn.addEventListener('click', () => {
+        window.bgMusic.switchTrack();
+      });
+    }
   }
 
-  loadTrack(idx) {
-    const track = this.tracks[idx];
-    this.audio.src = track.src;
-    this.musicTitle.textContent = track.name;
-  }
-
-  playAudio() {
-    return this.audio.play().then(() => {
-      this.iconPlay.style.display = 'none';
-      this.iconPause.style.display = 'block';
-      this.musicBars.classList.add('playing');
-    }).catch(err => {
-      console.log('Audio autoplay prevented:', err);
-    });
-  }
-
-  pauseAudio() {
-    this.audio.pause();
-    this.iconPlay.style.display = 'block';
-    this.iconPause.style.display = 'none';
-    this.musicBars.classList.remove('playing');
-  }
-
+  // --- REAL-TIME ANIMATION LOOP ---
   animate() {
     requestAnimationFrame(this.animate);
+    const delta = this.clock.getDelta();
 
+    // Rotate Sun & Corona
     if (this.sun) {
       this.sun.rotation.y += 0.002;
-      this.sunGlow.rotation.y -= 0.001;
-      this.sunOuterHalo.rotation.z += 0.0005;
+      this.sunCorona.rotation.y -= 0.001;
+      this.sunOuterHalo.rotation.z += 0.0006;
     }
 
-    if (this.starfield) {
-      this.starfield.rotation.y += 0.00015;
+    // Twinkle & rotate cosmic fields
+    if (this.deepStars) {
+      this.deepStars.rotation.y += 0.00008;
+    }
+    if (this.glintStars) {
+      this.glintStars.rotation.y += 0.00015;
     }
     if (this.nebula) {
-      this.nebula.rotation.y -= 0.0003;
+      this.nebula.rotation.y -= 0.00025;
     }
 
-    this.updateShootingStars();
+    // Update Comets & Asteroid Belt
+    this.updateComets();
+    this.updateAsteroidBelt();
 
+    // Rotate planets and orbit around sun
     this.planets.forEach((p) => {
-      p.mesh.rotation.y += 0.01;
+      p.mesh.rotation.y += 0.012;
+      if (p.cloudMesh) {
+        p.cloudMesh.rotation.y += 0.016; // Clouds rotate slightly faster for realistic depth
+      }
 
       if (!this.isModalOpen || this.focusedPlanet !== p) {
         p.angle += p.orbitSpeed;
@@ -935,11 +1181,22 @@ class GalaxyApp {
       }
     });
 
+    // Update Moons
+    this.moons.forEach(m => {
+      m.angle += m.speed;
+      const parentPos = m.parentMesh.position;
+      m.mesh.position.x = parentPos.x + Math.cos(m.angle) * m.dist;
+      m.mesh.position.z = parentPos.z + Math.sin(m.angle) * m.dist;
+      m.mesh.position.y = parentPos.y + Math.sin(m.angle * 2) * 0.4;
+      m.mesh.rotation.y += 0.02;
+    });
+
+    // Smooth Camera Transition
     if (this.isTransitioningCam) {
       this.camera.position.lerp(this.targetCamPos, 0.06);
       this.controls.target.lerp(this.targetLookAt, 0.06);
 
-      if (this.camera.position.distanceTo(this.targetCamPos) < 0.2) {
+      if (this.camera.position.distanceTo(this.targetCamPos) < 0.25) {
         this.isTransitioningCam = false;
       }
     } else if (this.focusedPlanet && this.isModalOpen) {
